@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 
 import authRoutes from './routes/auth';
 import {setHeader} from "./functions/util";
+import {PORT, MONGO_URL} from './configuration';
 
 const app = express();
 dotenv.config();
@@ -26,11 +27,11 @@ app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
 
 mongoose
   .connect(
-    process.env.mongoString,
+    MONGO_URL,
     { useNewUrlParser: true }
   )
   .then(() => {
-    console.info('Database connected');
-    app.listen(process.env.port);
+    console.info('Database connected, url: ' + MONGO_URL);
+    app.listen(PORT);
   })
   .catch(err => console.log(err));

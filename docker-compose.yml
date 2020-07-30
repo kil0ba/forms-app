@@ -1,7 +1,43 @@
 version: "3"
 
 services:
+  frontend:
+    build: # нужно чтобы брать разные докерфайлы
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: forms-frontend
+    command: serve -s build -l 3000
+    # ports:
+    #   - "3000:3000"
+    restart: unless-stopped
   api:
     build: ./api
     container_name: forms-api
     command: npm run start
+    restart: unless-stopped
+    environment:
+      - PORT=3001
+      - MONGO_URL=mongodb://db:27017/api
+    depends_on:
+      - db
+  db:
+    container_name: forms-db
+    image: mongo:latest
+    volumes:
+    - mongodb:/data/db
+    ports:
+      - "27017:27017"
+  nginx:
+    image: nginx:stable-alpine
+    container_name: forms-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf.prod:/etc/nginx/conf.d/nginx.conf
+    depends_on:
+      - frontend
+      - api
+
+
+volumes:
+  mongodb:

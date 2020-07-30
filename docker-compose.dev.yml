@@ -1,6 +1,15 @@
 version: "3"
 
 services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    command: npm run start
+    stdin_open: true # хз зачем нужны, как-то дев фронта с ними робит
+    tty: true
+    volumes:
+      - ./frontend/src:/usr/src/app/src
   api:
     build:
       context: ./api
@@ -10,3 +19,8 @@ services:
     tty: true
     volumes:
       - ./api/src:/usr/src/app/src
+    ports:
+      - "3001:3001"
+  nginx:
+    volumes:
+      - ./nginx/nginx.conf.dev:/etc/nginx/conf.d/nginx.conf

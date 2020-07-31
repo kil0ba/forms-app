@@ -1,0 +1,29 @@
+.header {
+  height: 70px;
+  //background: linear-gradient(90deg, #ffff00, #ffff5a);
+  box-shadow: gray 0 0 10px;
+}
+
+.enterHeader {
+  animation: openHeader .3s;
+}
+
+.navigationContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@keyFrames openHeader {
+  0% {
+    transform: translateY(-70px);
+  }
+
+  //50% {
+  //  opacity: 1;
+  //  transform: translateY(90%);
+  //}
+
+  100% {
+    transform: translateY(0);
+  }
+}

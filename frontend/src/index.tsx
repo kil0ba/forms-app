@@ -8,6 +8,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import authReducer from "./store/reducers/auth/auth";
+import { BrowserRouter } from "react-router-dom";
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__']! : compose;
 
@@ -28,7 +29,9 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={ store }>
     <React.StrictMode>
-      <App/>
+      <BrowserRouter>
+        <App/>
+      </BrowserRouter>
     </React.StrictMode>
   </Provider>,
   document.getElementById('root')

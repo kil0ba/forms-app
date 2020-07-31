@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import CSSTransition from "react-transition-group/CSSTransition";
 import s from './Header.module.scss';
 import Navigation from "./Navigation/Navigation";
+// import listIcon from '../../assets/icons/listIcon.png';
 
 const animationTiming = {
   enter: 300
@@ -22,10 +23,23 @@ const Header = () => {
         enterActive: s.enterHeader
       } }>
       <header className={ s.header }>
-        <div>Logo</div>
-        <div className={ s.navigationContainer }>
-          <Navigation showAnimated={ navAnimation }/>
-        </div>
+        <CSSTransition
+          mountOnEnter
+          timeout={ animationTiming }
+          in={ navAnimation }
+          classNames={ {
+            enterActive: s.showNavigation
+          } }>
+          <div className={ s.navsContainer }>
+            <div className={ s.logoContainer }>
+              <div className={ s.logo }/>
+              <p className={ s.brandName }>Form Builder</p>
+            </div>
+            <div className={ s.navigationContainer }>
+              <Navigation />
+            </div>
+          </div>
+        </CSSTransition>
       </header>
     </CSSTransition>
   );

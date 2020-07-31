@@ -1,11 +1,16 @@
+$height: 70px;
+
 .header {
-  height: 70px;
-  //background: linear-gradient(90deg, #ffff00, #ffff5a);
+  height: $height;
   box-shadow: gray 0 0 10px;
+  position: relative;
 }
 
-.enterHeader {
-  animation: openHeader .3s;
+.navsContainer {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  position: inherit;
 }
 
 .navigationContainer {
@@ -13,17 +18,51 @@
   justify-content: flex-end;
 }
 
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: inherit;
+}
+
+.logo {
+  background: url("../../assets/icons/listIcon.png") no-repeat center/80%;
+  height: 100%;
+  min-width: 50px;
+  width: auto;
+}
+
+.brandName {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.showNavigation {
+  animation: showNav .3s;
+}
+
+.enterHeader {
+  animation: openHeader .3s;
+}
+
 @keyFrames openHeader {
   0% {
-    transform: translateY(-70px);
+    transform: translateY(-100%);
   }
 
-  //50% {
-  //  opacity: 1;
-  //  transform: translateY(90%);
-  //}
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyFrames showNav {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
 
   100% {
+    opacity: 1;
     transform: translateY(0);
   }
 }

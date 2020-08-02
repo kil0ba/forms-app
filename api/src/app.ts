@@ -2,14 +2,12 @@ import express, {Request, Response, NextFunction, ErrorRequestHandler} from 'exp
 
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
 
 import authRoutes from './routes/auth';
 import {setHeader} from "./functions/util";
 import {PORT, MONGO_URL} from './configuration';
 
 const app = express();
-dotenv.config();
 
 app.use(bodyParser.json());
 

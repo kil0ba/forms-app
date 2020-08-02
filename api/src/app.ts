@@ -9,7 +9,7 @@ import {setHeader} from "./functions/util";
 import {PORT, MONGO_URL} from './configuration';
 
 const app = express();
-dotenv.config();
+dotenv.config(); // Достаем env
 
 app.use(bodyParser.json());
 

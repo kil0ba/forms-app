@@ -3,8 +3,7 @@ import CSSTransition from "react-transition-group/CSSTransition";
 import s from './Header.module.scss';
 import Navigation from "./Navigation/Navigation";
 import { RouteProps, useHistory } from "react-router-dom";
-import { WithRouterProps } from "react-router";
-// import listIcon from '../../assets/icons/listIcon.png';
+import DrawerToggle from "./DrawerToggle/DrawerToggle";
 
 const animationTiming = {
   enter: 300
@@ -38,6 +37,7 @@ const Header = (props: HeaderProps) => {
             enterActive: s.showNavigation
           } }>
           <div className={ s.navsContainer }>
+            <DrawerToggle clicked={ () => false }/>
             <div className={ s.logoContainer }>
               <div className={ s.logo } onClick={ redirect }/>
               <p className={ s.brandName } onClick={ redirect }>Form Builder</p>

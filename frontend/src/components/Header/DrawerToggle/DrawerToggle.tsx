@@ -11,7 +11,7 @@ const DrawerToggle = (props: DrawerToggleProps) => (
 );
 
 interface DrawerToggleProps {
-  clicked: () => boolean;
+  clicked: () => void;
 }
 
 export default DrawerToggle;

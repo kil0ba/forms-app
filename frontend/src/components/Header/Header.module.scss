@@ -4,6 +4,10 @@ $height: 70px;
   height: $height;
   box-shadow: gray 0 0 10px;
   position: relative;
+
+  @media (max-width: 500px) {
+    height: $height * 0.7;
+  }
 }
 
 .navsContainer {

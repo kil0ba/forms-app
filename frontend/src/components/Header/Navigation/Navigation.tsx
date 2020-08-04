@@ -18,6 +18,7 @@ const Navigation = (props: NavigationProps) => {
 };
 
 interface NavigationProps {
+  sideDraw?: boolean;
 }
 
 export default Navigation;

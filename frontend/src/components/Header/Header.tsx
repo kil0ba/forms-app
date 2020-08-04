@@ -3,8 +3,8 @@ import CSSTransition from "react-transition-group/CSSTransition";
 import s from './Header.module.scss';
 import Navigation from "./Navigation/Navigation";
 import { RouteProps, useHistory } from "react-router-dom";
-import { WithRouterProps } from "react-router";
-// import listIcon from '../../assets/icons/listIcon.png';
+import DrawerToggle from "./DrawerToggle/DrawerToggle";
+import SideDrawer from "./Navigation/SideDrawer/SideDrawer";
 
 const animationTiming = {
   enter: 300
@@ -13,6 +13,7 @@ const animationTiming = {
 const Header = (props: HeaderProps) => {
   const [animation, setAnimation] = useState<boolean>(false);
   const [navAnimation, setNavAnimation] = useState<boolean>(false);
+  const [isSideDrawer, setSideDrawer] = useState<boolean>(false);
   const history = useHistory();
   useEffect(() => setAnimation(true), []);
 
@@ -38,6 +39,11 @@ const Header = (props: HeaderProps) => {
             enterActive: s.showNavigation
           } }>
           <div className={ s.navsContainer }>
+            <DrawerToggle clicked={ () => setSideDrawer(!isSideDrawer) }/>
+            <SideDrawer
+              isOpen={ isSideDrawer }
+              drawerHandler={ () => setSideDrawer(false) }
+            />
             <div className={ s.logoContainer }>
               <div className={ s.logo } onClick={ redirect }/>
               <p className={ s.brandName } onClick={ redirect }>Form Builder</p>

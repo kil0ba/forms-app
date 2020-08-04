@@ -1,16 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Layout from "./hoc/Layout/Layout";
-import { Route, Switch } from "react-router";
 
-const App: React.FC = () => {
+import { Redirect, Route, Switch } from "react-router";
+import routes from "./routes/routes";
+import './App.module.scss';
+import Layout from "./hoc/Layout/Layout";
+
+import s from './App.module.scss';
+
+const App: React.FC<{}> = () => {
+  const routesList = routes.map(route => {
+    const Component = route.component;
+    return <Route
+      key={ route.path }
+      path={ route.path }
+      exact={ route.exact }>
+      <div className={ s.route }>
+        <Component/>
+      </div>
+    </Route>
+  });
+
   return (
     <Layout>
       <Switch>
-        <Route path='/' exact render={ props => <div> Root </div> }/>
-        <Route path='/login' render={ props => <div> login </div> }/>
-        <Route path='/signup' exact render={ props => <div> signup </div> }/>
+        { routesList }
+        <Redirect to={ '/' }/>
       </Switch>
     </Layout>
   );

@@ -1,20 +1,19 @@
 import React, { ReactElement } from 'react';
-import PropTypes from 'prop-types';
 import Header from "../../components/Header/Header";
 
 const Layout = (props: LayoutProps) => {
   return (
     <div>
       <Header/>
-      <body>
+      <div>
       { props.children }
-      </body>
+      </div>
     </div>
   );
 };
 
 interface LayoutProps {
-  children: ReactElement;
+  children: ReactElement | ReactElement[];
 }
 
 export default Layout;

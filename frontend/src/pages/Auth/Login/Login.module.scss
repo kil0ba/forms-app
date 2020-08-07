@@ -1,9 +1,27 @@
 .container {
   margin: 10px 40px;
   //border: 1px solid lightgray;
+  width: 80%;
   max-width: 1000px;
+  animation: showLogin .2s ease-in;
 
   @media (max-width: 500px) {
     margin: 10px 5px;
+  }
+}
+
+.pageInfo {
+  padding: 5px;
+}
+
+@keyFrames showLogin {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

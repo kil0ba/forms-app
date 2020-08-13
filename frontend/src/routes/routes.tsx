@@ -1,9 +1,11 @@
 import { RouteModel } from "./route.model";
 import DummyPage from "../pages/DummyPage";
 import Login from "../pages/Auth/Login/Login";
+import Logout from "../pages/Auth/Logout/Logout";
 
 const routes: RouteModel[] = [
   new RouteModel('/', DummyPage),
+  new RouteModel('/logout', Logout),
   new RouteModel('**/login', Login),
   new RouteModel('**/signup', DummyPage),
   new RouteModel('/forms/new', DummyPage),

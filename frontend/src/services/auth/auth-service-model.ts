@@ -5,5 +5,6 @@ export type authUserBody = {
 
 export interface authUserResponse {
   message: string,
-  token: string
+  token: string,
+  userId: string
 }

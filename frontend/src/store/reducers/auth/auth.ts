@@ -11,13 +11,20 @@ const authReducer = (state: AuthState = new AuthState(), action: AuthAction) => 
   switch (action.type) {
     case actionTypes.AUTH_START:
       newState.loading = true;
-      return newState;
+      break;
+    case actionTypes.AUTH_SUCCESS:
+      newState.token = action.token;
+      newState.userId = action.userId;
+      break;
+    case actionTypes.AUTH_LOGOUT:
+      newState.token = undefined;
+      newState.userId = undefined;
+      break;
     case actionTypes.AUTH_ERROR:
       newState.error = action.error!;
-      return newState;
-    default:
-      return state;
+      break;
   }
+  return newState;
 };
 
 export default authReducer;

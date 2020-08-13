@@ -1,5 +1,5 @@
 import * as actionTypes from '../../actionTypes';
-import { Auth, AuthError } from "./auth.model";
+import { Auth, AuthError, AuthSuccess } from "./auth.model";
 
 /**
  * Логин пользователя
@@ -19,9 +19,29 @@ export const authStart = () => {
   }
 };
 
+export const authSuccess: AuthSuccess = (token, userId) => {
+  return {
+    type: actionTypes.AUTH_SUCCESS,
+    token,
+    userId
+  }
+}
+
 export const authError: AuthError = error => {
   return {
     type: actionTypes.AUTH_ERROR,
     error
+  }
+}
+
+export const authLogout = () => {
+  return {
+    type: actionTypes.AUTH_LOGOUT
+  }
+}
+
+export const checkAuth = () => {
+  return {
+    type: actionTypes.AUTH_CHECK
   }
 }

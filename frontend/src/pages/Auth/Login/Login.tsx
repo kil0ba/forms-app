@@ -6,10 +6,15 @@ import s from './Login.module.scss';
 import { Form } from "react-final-form";
 import Input from "../../../components/Forms/Input/Input";
 import { auth } from "../../../store/actions/auth/auth";
-import { MapStateToProps } from "../../../store/types/props.model";
+import { MapStateToPropsModel } from "../../../store/types/props.model";
 import { Auth } from "../../../store/actions/auth/auth.model";
+import { Redirect } from "react-router";
 
 const Login = (props: LoginProps) => {
+  if (props.token) {
+    return <Redirect to={ '/' }/>
+  }
+
   const submitHandler = (values: any) => {
     props.onAuth(values.email as string, values.password as string);
   };
@@ -37,13 +42,16 @@ const Login = (props: LoginProps) => {
 interface LoginProps {
   loading: boolean,
   error: string,
+  token: string,
+
   onAuth: Auth
 }
 
-const mapStateToProps: MapStateToProps<LoginProps> = (state) => {
+const mapStateToProps: MapStateToPropsModel<LoginProps> = (state) => {
   return {
     loading: state.auth.loading,
-    error: state.auth.error
+    error: state.auth.error,
+    token: state.auth.token
   }
 }
 

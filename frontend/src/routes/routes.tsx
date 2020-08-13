@@ -6,7 +6,7 @@ import Logout from "../pages/Auth/Logout/Logout";
 const routes: RouteModel[] = [
   new RouteModel('/', DummyPage),
   new RouteModel('/logout', Logout),
-  new RouteModel('**/login', Login),
+  new RouteModel('**/login', Login, { renderIf: "!login" }),
   new RouteModel('**/signup', DummyPage),
   new RouteModel('/forms/new', DummyPage),
   new RouteModel('/forms/my', DummyPage),

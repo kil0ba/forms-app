@@ -9,5 +9,5 @@ export class NavItem {
 }
 
 interface NavItemOptions {
-  displayIf?: 'login' | '!login';
+  displayIf?: 'login' | '!login' | 'always';
 }

@@ -18,7 +18,7 @@ const NavigationItem = (props: navigationItemProps) => (
 interface navigationItemProps {
   children: string,
   link: string,
-  exact?: boolean
+  exact?: boolean,
 }
 
 export default NavigationItem;

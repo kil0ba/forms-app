@@ -8,7 +8,7 @@ const SideDrawer: React.FunctionComponent<sideDrawerProps> = ({ isOpen, drawerHa
   return (
     <div className={ s.container }>
       <div className={ [s.sideDrawer, isOpen ? s.Open : s.Close].join(' ') }>
-        <Navigation/>
+        <Navigation drawerHandler={ drawerHandler }/>
       </div>
       <Backdrop show={ isOpen } clicked={ drawerHandler }/>
     </div>

@@ -9,6 +9,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import authReducer from "./store/reducers/auth/auth";
 import { BrowserRouter } from "react-router-dom";
+import { watchAuth } from "./store/sagas";
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__']! : compose;
 
@@ -24,6 +25,8 @@ const store = createStore(
     applyMiddleware(sagaMiddleware)
   )
 )
+
+sagaMiddleware.run(watchAuth);
 
 // TODO подключить редьюсер к саге и подключить его к реакту
 ReactDOM.render(

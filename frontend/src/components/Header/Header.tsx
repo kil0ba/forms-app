@@ -30,29 +30,31 @@ const Header = (props: HeaderProps) => {
       classNames={ {
         enterActive: s.enterHeader
       } }>
-      <header className={ s.header }>
-        <CSSTransition
-          mountOnEnter
-          timeout={ animationTiming }
-          in={ navAnimation }
-          classNames={ {
-            enterActive: s.showNavigation
-          } }>
-          <div className={ s.navsContainer }>
-            <DrawerToggle clicked={ () => setSideDrawer(!isSideDrawer) }/>
-            <SideDrawer
-              isOpen={ isSideDrawer }
-              drawerHandler={ () => setSideDrawer(false) }
-            />
-            <div className={ s.logoContainer }>
-              <div className={ s.logo } onClick={ redirect }/>
-              <p className={ s.brandName } onClick={ redirect }>Form Builder</p>
+      <header className={ s.container }>
+        <div className={ s.header }>
+          <CSSTransition
+            mountOnEnter
+            timeout={ animationTiming }
+            in={ navAnimation }
+            classNames={ {
+              enterActive: s.showNavigation
+            } }>
+            <div className={ s.navsContainer }>
+              <DrawerToggle clicked={ () => setSideDrawer(!isSideDrawer) }/>
+              <SideDrawer
+                isOpen={ isSideDrawer }
+                drawerHandler={ () => setSideDrawer(false) }
+              />
+              <div className={ s.logoContainer }>
+                <div className={ s.logo } onClick={ redirect }/>
+                <p className={ s.brandName } onClick={ redirect }>Form Builder</p>
+              </div>
+              <div className={ s.navigationContainer }>
+                <Navigation/>
+              </div>
             </div>
-            <div className={ s.navigationContainer }>
-              <Navigation/>
-            </div>
-          </div>
-        </CSSTransition>
+          </CSSTransition>
+        </div>
       </header>
     </CSSTransition>
   );

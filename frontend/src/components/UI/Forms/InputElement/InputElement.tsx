@@ -7,6 +7,7 @@ const InputElement: FunctionComponent<inputProps> = (props) => {
       className={ s.input }
       type={ props.type }
       onChange={ props.onChange }
+      disabled={ props.disabled }
       />
   );
 };
@@ -16,6 +17,7 @@ interface inputProps {
   onChange: (event: ChangeEvent) => void;
   value: string;
   name: string;
+  disabled?: boolean;
 }
 
 export default InputElement;

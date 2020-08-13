@@ -12,9 +12,11 @@ const Input: FunctionComponent<inputProps> = (props) => {
         name={ props.name }>
         { (fieldProps) => {
           return <InputElement
+            { ...fieldProps }
             type={ props.inputType }
             onChange={ fieldProps.input.onChange }
             value={ fieldProps.input.value }
+            disabled={ props.disabled }
             name={ fieldProps.input.name }/>
         } }
       </Field>
@@ -25,7 +27,8 @@ const Input: FunctionComponent<inputProps> = (props) => {
 interface inputProps {
   name: string,
   label: string,
-  inputType: string
+  inputType: string,
+  disabled?: boolean
 }
 
 export default Input;

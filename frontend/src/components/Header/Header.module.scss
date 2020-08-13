@@ -1,4 +1,13 @@
-$height: 70px;
+@import "../../style/header_constants.scss";
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: white;
+}
 
 .header {
   height: $height;
@@ -6,7 +15,7 @@ $height: 70px;
   position: relative;
 
   @media (max-width: 500px) {
-    height: $height * 0.7;
+    height: $mobile-height;
   }
 }
 

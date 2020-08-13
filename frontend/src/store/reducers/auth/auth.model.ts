@@ -1,10 +1,10 @@
-export class AuthInitialState {
-  token = null;
-  userId = null;
-  error = null;
+export class AuthState {
+  token?: string;
+  userId?: string;
+  error?: string;
   loading = false;
 }
 
-export interface AuthAction {
+export interface AuthAction extends Partial<AuthState> {
   type: string;
 }

@@ -1,0 +1,9 @@
+@import '../../style/header_constants.scss';
+
+.body {
+  margin-top: $height;
+
+  @media (max-width: 500px) {
+    margin-top: $mobile-height;
+  }
+}

@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 
 import authRoutes from './routes/auth';
 import {setHeader} from "./functions/util";
-import {PORT, MONGO_URL} from './configuration';
+import { PORT, MONGO_URL, MAILER_API_KEY } from './configuration';
 
 const app = express();
 
@@ -30,6 +30,7 @@ mongoose
   )
   .then(() => {
     console.info('Database connected, url: ' + MONGO_URL);
+    console.info(MAILER_API_KEY);
     app.listen(PORT);
   })
   .catch(err => console.log(err));

@@ -48,7 +48,7 @@ export const signUp = async(req: Request, res: Response, next: NextFunction): Pr
       from: 'auth@forms-builder.com',
       subject: 'Signup succeeded!',
       html: '<h1>You successfully signup!</h1>'
-    }).then(mailRes => {
+    }).then(_mailRes => {
       console.info('EMAIL SEND TO ' + email);
     })
   } catch (err) {
@@ -65,7 +65,6 @@ export const login = async(req: Request, res: Response, next: NextFunction): Pro
 
     if (!user || user.password !== password) {
       const error = new Error('Wrong Password');
-      // error.statusCode = '422';
       throw error;
     }
     const token = jwt.sign({
@@ -73,7 +72,7 @@ export const login = async(req: Request, res: Response, next: NextFunction): Pro
         userId: user._id.toString()
       },
       'superPuperSecret',
-      { expiresIn: '5h' });
+      { expiresIn: '7d' });
     const answer = { message: 'Login success', token };
     res.status(200).json(answer);
     return answer;

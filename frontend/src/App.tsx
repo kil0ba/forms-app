@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, FunctionComponent, ReactElement } from 'react';
+import React, { useEffect, FunctionComponent, ReactElement } from 'react';
 import { connect, MapDispatchToPropsFunction } from "react-redux";
 import { Redirect, Route, Switch } from "react-router";
 
@@ -9,12 +9,12 @@ import { checkAuth } from "./store/actions/auth/auth";
 import s from './App.module.scss';
 import { MapStateToPropsModel } from "./store/types/props.model";
 
-const App: FunctionComponent<AppProps> = (props) => {
+const App: FunctionComponent<AppProps> = ({ token, checkAuth }) => {
   useEffect(() => {
-    if (props.checkAuth) {
-      props.checkAuth();
+    if (checkAuth) {
+      checkAuth();
     }
-  }, [])
+  }, [checkAuth])
   console.log('render');
 
   const routesList =
@@ -24,8 +24,8 @@ const App: FunctionComponent<AppProps> = (props) => {
         if (
           route.renderIf !== 'always' &&
           (
-            (route.renderIf === 'login' && !props.token) ||
-            (route.renderIf === '!login' && props.token)
+            (route.renderIf === 'login' && !token) ||
+            (route.renderIf === '!login' && token)
           )
         ) {
           return accum;

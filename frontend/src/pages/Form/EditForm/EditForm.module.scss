@@ -1,0 +1,37 @@
+.container {
+  margin: 10px 40px;
+  //border: 1px solid lightgray;
+  width: 80%;
+  max-width: 1000px;
+  animation: showPage .2s ease-in;
+
+  @media (max-width: 500px) {
+    margin: 10px 5px;
+  }
+}
+
+.pageInfo {
+  padding: 5px;
+}
+
+.formContainer {
+
+}
+
+.questionContainer {
+  border: 1px solid #eee;
+  padding: 20px;
+  box-shadow: rgba(102, 102, 102, 0.5) 4px 4px 4px;
+}
+
+@keyFrames showPage {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

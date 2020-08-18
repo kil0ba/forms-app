@@ -15,4 +15,9 @@ server {
         proxy_pass http://api:3001;
         rewrite ^/api/(.*) /$1 break;
     }
+
+    location /debug/api {
+        proxy_pass http://api:9229;
+        rewrite ^/api/(.*) /$1 break;
+    }
 }

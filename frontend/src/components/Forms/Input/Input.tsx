@@ -5,9 +5,23 @@ import InputElement from "../../UI/Forms/InputElement/InputElement";
 import s from './Input.module.scss';
 
 const Input: FunctionComponent<inputProps> = (props) => {
+  const containerClasses = [
+    s.borderColor,
+    !props.disableBorder ? s.shadow : undefined,
+    s.container,
+  ].join(' ');
+
+  console.log('Input Render')
+
   return (
-    <div className={ s.container }>
-      <label htmlFor={ props.name } className={ s.label }> { props.label } </label>
+    <div className={ containerClasses }>
+      <div className={ s.nameContainer }>
+        <label htmlFor={ props.name } className={ s.label }> { props.label } </label>
+        { props.showDeleteBtn && <span
+          // onClick={ () => fields.remove(index) }
+          className='delete_btn'
+        /> }
+      </div>
       <Field
         name={ props.name }>
         { (fieldProps) => {
@@ -20,6 +34,7 @@ const Input: FunctionComponent<inputProps> = (props) => {
             name={ fieldProps.input.name }/>
         } }
       </Field>
+
     </div>
   );
 };
@@ -28,7 +43,9 @@ interface inputProps {
   name: string,
   label: string,
   inputType: string,
-  disabled?: boolean
+  disabled?: boolean,
+  disableBorder?: boolean,
+  showDeleteBtn?: boolean
 }
 
 export default Input;

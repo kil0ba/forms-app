@@ -4,7 +4,14 @@
   flex-direction: column;
   border: 1px solid #eee;
   padding: 15px;
-  box-shadow: rgba(102, 102, 102, 0.5) 4px 4px 4px;;
+}
+
+.shadow {
+  box-shadow: rgba(102, 102, 102, 0.5) 4px 4px 4px;
+}
+
+.borderColor {
+  border-left: 1px solid #2ea3f2;
 }
 
 .label {

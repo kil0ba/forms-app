@@ -1,0 +1,11 @@
+{
+  "name": "forms-back",
+  "version": "1.0.0",
+  "main": "src/app.ts",
+  "license": "MIT",
+  "scripts": {
+    "start": "docker-compose up --build",
+    "start-dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build",
+    "start-api-debug": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose.debug.yml up --build"
+  }
+}

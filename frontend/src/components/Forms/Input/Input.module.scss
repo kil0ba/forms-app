@@ -3,3 +3,9 @@
 .container {
   margin-bottom: 10px;
 }
+
+.nameContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

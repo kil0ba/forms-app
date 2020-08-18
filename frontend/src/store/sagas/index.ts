@@ -1,4 +1,4 @@
-import { takeEvery, all, take } from 'redux-saga/effects';
+import { takeEvery, all } from 'redux-saga/effects';
 import { AUTH_CHECK, AUTH_LOGOUT, AUTH_USER } from "../actionTypes";
 import { authUserSaga, checkAuthSaga, logoutUserSaga } from "./auth";
 

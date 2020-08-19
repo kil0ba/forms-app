@@ -6,11 +6,11 @@ import nodemailer from 'nodemailer';
 
 const sendGridTransport = require('nodemailer-sendgrid-transport');
 
-import { MAILER_API_KEY as api_key, TOKEN_SECRET_KEY } from "../configuration";
-import User from "../models/mongoose/user";
+import { MAILER_API_KEY as api_key, TOKEN_SECRET_KEY } from "../../configuration";
+import User from "../../models/mongoose/user";
 
-import { errorCatch } from "../functions/errors";
-import { SignUpValidator } from "./validators/authValidators";
+import { errorCatch } from "../../functions/errors";
+import { SignUpValidator } from "./authValidators";
 
 const mailTransporter = nodemailer.createTransport(sendGridTransport({
   auth: {
@@ -62,7 +62,7 @@ export const login = async(req: Request, res: Response, next: NextFunction): Pro
 
   try {
     const user = await User.findOne({ email });
-
+    console.log(user.forms);
     if (!user || user.password !== password) {
       const error = new Error('Wrong Password');
       throw error;

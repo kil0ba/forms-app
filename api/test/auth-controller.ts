@@ -4,7 +4,7 @@ import {expect} from 'chai';
 import mongoose from 'mongoose';
 
 import User from '../src/models/mongoose/user';
-import {login} from '../src/controllers/auth';
+import {login} from '../src/controllers/Auth/auth';
 
 describe('Auth Controller', () => {
   before((done) => {

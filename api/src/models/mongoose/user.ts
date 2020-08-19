@@ -1,4 +1,5 @@
 import mongoose, { Document } from 'mongoose';
+import { IForm } from "./form";
 const Schema = mongoose.Schema;
 
 
@@ -6,10 +7,10 @@ export interface IUser extends Document {
   email: string,
   password: string,
   name: string,
-  forms: any[]
+  forms: IForm[]
 }
 
-const userSchema = new Schema({
+const userSchema = new Schema<IUser>({
   email: {
     type: String,
     required: true,
@@ -25,7 +26,8 @@ const userSchema = new Schema({
   },
   forms: [
     {
-      type: Schema.Types.ObjectId
+      type: Schema.Types.ObjectId,
+      res: 'Form'
     }
   ]
 });

@@ -1,6 +1,6 @@
-import * as authControllers from "../controllers/auth";
-
 import express, {Router} from "express";
+
+import * as authControllers from "../controllers/Auth/auth";
 
 const router: Router = express.Router();
 // POST /auth/signUp

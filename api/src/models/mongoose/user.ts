@@ -1,5 +1,5 @@
 import mongoose, { Document } from 'mongoose';
-import { IForm } from "./form";
+import { IForm } from "./formModel";
 const Schema = mongoose.Schema;
 
 
@@ -27,7 +27,7 @@ const userSchema = new Schema<IUser>({
   forms: [
     {
       type: Schema.Types.ObjectId,
-      res: 'Form'
+      ref: 'Form'
     }
   ]
 });

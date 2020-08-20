@@ -1,10 +1,10 @@
 import authRoutes from "./auth";
-import formRoutes from "./Forms/save-form";
+import formRoutes from "./Forms";
 import express, { NextFunction, Request, Response } from "express";
 import { ResponseError } from "../types/shared/error";
 
 class Router {
-  public static register(server: express.Express) {
+  public static register(server: express.Express): void {
     const router = express.Router()
 
     router.use('/auth', authRoutes);
@@ -12,9 +12,15 @@ class Router {
     router.use('/forms', formRoutes)
 
     router.use((error: ResponseError, req: Request, res: Response, next: NextFunction) => {
-      console.warn(error);
       const message = error._message || error.message;
-      res.status(error.statusCode).json({ error, message });
+      res.status(error.statusCode).json({
+        info: {
+          ...error,
+          stackTrace: error.stack
+        },
+        message
+      });
+      next();
     });
 
     server.use('/', router);

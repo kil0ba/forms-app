@@ -28,9 +28,11 @@ const formSchema = new Schema<IForm>({
   inputs: [
     {
       type: Schema.Types.ObjectId,
-      res: 'Input'
+      ref: 'Input'
     }
   ]
 })
 
-export default model<IForm>('Form', formSchema);
+const FormModel = model<IForm>('Form', formSchema);
+
+export default FormModel;

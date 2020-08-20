@@ -20,13 +20,16 @@ services:
       - MONGO_URL=mongodb://db:27017/api
     depends_on:
       - db
+
   db:
+    hostname: db
     container_name: forms-db
     image: mongo:latest
     volumes:
     - mongodb:/data/db
     ports:
       - "27017:27017"
+
   nginx:
     image: nginx:stable-alpine
     container_name: forms-nginx
@@ -41,3 +44,5 @@ services:
 
 volumes:
   mongodb:
+  mongodb2:
+  mongodb3:

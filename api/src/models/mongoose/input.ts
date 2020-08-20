@@ -12,9 +12,11 @@ const inputSchema = new Schema<IInput>({
   },
   formId: {
     type: Schema.Types.ObjectId,
-    res: 'Form',
+    ref: 'Form',
     required: true
   }
 })
 
-export default model('Input', inputSchema)
+const InputModel = model('Input', inputSchema);
+
+export default InputModel;

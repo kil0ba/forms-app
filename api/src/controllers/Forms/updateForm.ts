@@ -84,7 +84,7 @@ export const deleteForm: RequestHandler = async (req: RequestWithToken<void, IDe
 
     await form.deleteOne();
 
-    res.json('meh')
+    res.json({ message: "Deleted Successfully" })
   } catch (e) {
     errorCatch(e, next);
   }

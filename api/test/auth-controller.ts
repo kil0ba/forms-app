@@ -5,6 +5,8 @@ import mongoose from 'mongoose';
 
 import User from '../src/models/mongoose/user';
 import {login} from '../src/controllers/Auth/auth';
+import { testResponse } from "./const";
+import isAuth from "../src/middleware/is-auth";
 
 describe('Auth Controller', () => {
   before((done) => {
@@ -12,7 +14,7 @@ describe('Auth Controller', () => {
     mongoose.connect(
       'mongodb+srv://dava:dava@cluster0-7yjis.mongodb.net/forms-test?retryWrites=true&w=majority'
     )
-      .then((_result: Mongoose) => {
+      .then((_: Mongoose) => {
         const user = new User({
           email: 'test@test.com',
           password: 'tester',
@@ -36,22 +38,10 @@ describe('Auth Controller', () => {
         password: 'tester'
       }
     };
-    const res = {
-      statusCode: 500,
-      token: null,
-      status(code) {
-        this.statusCode = code;
-        return this;
-      },
-      json(data) {
-        this.token = data.token;
-        this.message = data.message;
-      }
-    };
+    const res = testResponse();
 
     // @ts-ignore
-    login(req, res, () => {
-    })
+    login(req, res, () => {})
       .then((resp) => {
         expect(resp).to.have.property('token').and.be.a('string');
         expect(resp.message).to.be.equal('Login success');
@@ -59,7 +49,7 @@ describe('Auth Controller', () => {
       })
   });
 
-  it('should answer code 422 and message "Wrong Password" when login if user not exist', function (done) {
+  it('should answer code 500 and message "Wrong Password" when login if user not exist', function (done) {
     const req = {
       body: {
         email: 'test2@test.com',
@@ -67,17 +57,7 @@ describe('Auth Controller', () => {
       }
     };
 
-    const res: any = {
-      statusCode: 500,
-      status(code) {
-        this.statusCode = code;
-        return this;
-      },
-      json(data) {
-        this.token = data.token;
-        this.message = data.message;
-      }
-    };
+    const res = testResponse();
 
     // @ts-ignore
     login(req, res, () => {
@@ -88,7 +68,31 @@ describe('Auth Controller', () => {
         done();
       })
       .catch((err) => {
-        console.log(err);
+        done(err);
+      });
+  });
+
+  it('should give valid token then login is success', function (done) {
+    const req = {
+      body: {
+        email: 'test@test.com',
+        password: 'tester'
+      },
+      get: undefined
+    };
+
+    const res = testResponse();
+
+    // @ts-ignore
+    login(req, res, () => {})
+      .then(result => {
+        expect(result.token).to.exist;
+        req.get = () => `Bearer ${result.token}`
+        expect(isAuth(req, res, () => {})).to.be.ok;
+        done();
+      })
+      .catch(err => {
+        done(err);
       });
   });
 

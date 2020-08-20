@@ -62,7 +62,6 @@ export const login = async(req: Request, res: Response, next: NextFunction): Pro
 
   try {
     const user = await User.findOne({ email });
-    console.log(user.forms);
     if (!user || user.password !== password) {
       const error = new Error('Wrong Password');
       throw error;

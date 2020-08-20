@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 
-import {setHeader} from "./functions/util";
+import { setHeader } from "./functions/util";
 import { PORT, MONGO_URL } from './configuration';
 import Router from "./routes/Router";
 
@@ -20,7 +20,7 @@ mongoose
     { useNewUrlParser: true }
   )
   .then(() => {
-    console.info('Database connected, url: ' + MONGO_URL);
+    console.info('Database connected, url: ' + MONGO_URL)
     app.listen(PORT);
   })
   .catch(err => console.log(err));

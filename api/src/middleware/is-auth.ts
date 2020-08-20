@@ -25,6 +25,7 @@ const isAuth = (req, res, next) => {
   }
   req.userId = decodedToken.userId;
   next();
+  return true;
 };
 
 export default isAuth;

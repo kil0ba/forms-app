@@ -11,8 +11,6 @@ const Input: FunctionComponent<inputProps> = React.memo((props) => {
     s.container,
   ].join(' ');
 
-  console.log('Input Render')
-
   return (
     <div className={ containerClasses }>
       <div className={ s.nameContainer }>
@@ -20,6 +18,7 @@ const Input: FunctionComponent<inputProps> = React.memo((props) => {
         { props.showDeleteBtn && <span
           // onClick={ () => fields.remove(index) }
           className='delete_btn'
+          data-testid="showDeleteBtn"
         /> }
       </div>
       <Field

@@ -9,13 +9,12 @@ import { checkAuth } from "./store/actions/auth/auth";
 import s from './App.module.scss';
 import { MapStateToPropsModel } from "./store/types/props.model";
 
-const App: FunctionComponent<AppProps> = ({ token, checkAuth }) => {
+export const App: FunctionComponent<AppProps> = ({ token, checkAuth }) => {
   useEffect(() => {
     if (checkAuth) {
       checkAuth();
     }
   }, [checkAuth])
-  console.log('render');
 
   const routesList =
     routes.reduce(
@@ -23,21 +22,22 @@ const App: FunctionComponent<AppProps> = ({ token, checkAuth }) => {
         const Component = route.component;
         if (
           route.renderIf !== 'always' &&
-          (
+          ( // Что-то по типу Guard, проверяет есть ли токен
             (route.renderIf === 'login' && !token) ||
             (route.renderIf === '!login' && token)
           )
         ) {
           return accum;
         }
-        accum.push(<Route
-          key={ route.path }
-          path={ route.path }
-          exact={ route.exact }>
-          <div className={ s.route }>
-            <Component/>
-          </div>
-        </Route>);
+        accum.push(
+          <Route
+            key={ route.path }
+            path={ route.path }
+            exact={ route.exact }>
+            <div className={ s.route }>
+              <Component/>
+            </div>
+          </Route>);
         return accum;
       }, [] as ReactElement[]
     );

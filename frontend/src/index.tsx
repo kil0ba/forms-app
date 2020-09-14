@@ -28,7 +28,6 @@ const store = createStore(
 
 sagaMiddleware.run(watchAuth);
 
-// TODO подключить редьюсер к саге и подключить его к реакту
 ReactDOM.render(
   <Provider store={ store }>
     <React.StrictMode>

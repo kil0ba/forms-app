@@ -49,15 +49,12 @@ const EditForm: FC<EditFormProps> = (props) => {
               <div className="buttons">
                 <button
                   type="button"
-                  onClick={ () => push("customers", { id: null }) }
+                  onClick={ () => push("inputs", { id: null }) }
                 >
-                  Add Customer
-                </button>
-                <button type="button" onClick={ () => pop("customers") }>
-                  Remove Customer
+                  Add Question
                 </button>
               </div>
-              <FieldArray name="customers">
+              <FieldArray name="inputs">
                 { ({ fields }) => (
                   <DragDropContext onDragEnd={ makeOnDragEndFunction(fields) }>
                     <Droppable droppableId="droppable">

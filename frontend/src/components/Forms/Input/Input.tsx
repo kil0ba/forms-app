@@ -4,7 +4,7 @@ import InputElement from "../../UI/Forms/InputElement/InputElement";
 
 import s from './Input.module.scss';
 
-const Input: FunctionComponent<inputProps> = (props) => {
+const Input: FunctionComponent<inputProps> = React.memo((props) => {
   const containerClasses = [
     s.borderColor,
     !props.disableBorder ? s.shadow : undefined,
@@ -37,7 +37,7 @@ const Input: FunctionComponent<inputProps> = (props) => {
 
     </div>
   );
-};
+});
 
 interface inputProps {
   name: string,

@@ -1,3 +1,5 @@
+$light-blue: #2ea3f2;
+
 * {
     margin: 0;
     padding: 0;
@@ -26,4 +28,9 @@ span.delete_btn {
     height: 25px;
     width: 25px;
     cursor: pointer;
+}
+
+:root {
+    --light-blue: #{$light-blue};
+    --darker-blue: #{darken($light-blue, 10%)}
 }

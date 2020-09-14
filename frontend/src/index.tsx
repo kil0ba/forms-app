@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import createSagaMiddleware from 'redux-saga';
 
-import './index.css';
+import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import authReducer from "./store/reducers/auth/auth";

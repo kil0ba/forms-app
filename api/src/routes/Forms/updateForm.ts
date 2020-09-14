@@ -1,13 +1,12 @@
-import express, {Router} from "express";
+import { Router } from "express";
 
 import isAuth from "../../middleware/is-auth";
-import * as saveFormControllers from '../../controllers/Forms/updateForm';
-import { deleteForm } from "../../controllers/Forms/updateForm";
+import * as saveFormControllers from '../../controllers/Forms/Update/updateForm';
 
-const router: Router = express.Router();
+const router: Router = Router();
 
 router.put('/create', isAuth, saveFormControllers.createForm);
 
-router.delete('/:id', isAuth, deleteForm);
+router.delete('/:id', isAuth, saveFormControllers.deleteForm);
 
 export default router;

@@ -1,3 +1,9 @@
+upstream apiService {
+    least_conn;
+    server api:3001 weight=1;
+    # server api2:3002 weight=1;
+}
+
 server {
     listen 80;
 
@@ -12,7 +18,7 @@ server {
     }
 
     location /api {
-        proxy_pass http://api:3001;
+        proxy_pass http://apiService;
         rewrite ^/api/(.*) /$1 break;
     }
 

@@ -22,6 +22,21 @@ services:
     ports:
       - "3001:3001"
       - "9229:9229" # для дебага
+# Второй экземпляр бэка
+#  api2:
+#    build:
+#      context: ./api
+#      dockerfile: Dockerfile.dev
+#    command: npm run start-nodemon
+#    stdin_open: true # хз зачем нужны, как-то дев фронта с ними робит
+#    tty: true
+#    volumes:
+#      - ./api/src:/usr/src/app/src
+#    ports:
+#      - "3002:3002"
+  db:
+    ports:
+      - "27017:27017"
   nginx:
     volumes:
       - ./nginx/nginx.conf.dev:/etc/nginx/conf.d/nginx.conf

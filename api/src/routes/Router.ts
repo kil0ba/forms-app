@@ -9,7 +9,7 @@ class Router {
 
     router.use('/auth', authRoutes);
 
-    router.use('/forms', formRoutes)
+    router.use('/forms', formRoutes);
 
     router.use((error: ResponseError, req: Request, res: Response, next: NextFunction) => {
       const message = error._message || error.message;

@@ -1,6 +1,8 @@
+import { NextFunction } from "express";
+
 import { ResponseError } from "../types/shared/error";
 
-export const errorCatch = (err: any, next: any) => {
+export const errorCatch = (err: ResponseError, next: NextFunction): void => {
   if (!err.statusCode) {
     err.statusCode = 500;
   }

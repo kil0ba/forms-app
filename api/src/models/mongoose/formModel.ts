@@ -1,7 +1,7 @@
 import { Document, Schema, model } from "mongoose";
 import { IInput } from "./input";
 
-export interface IForm extends Document {
+export interface IForm {
   userId: string,
   formInfo: {
     formName: string,
@@ -9,6 +9,8 @@ export interface IForm extends Document {
   },
   inputs: IInput[]
 }
+
+export interface IFormDocument extends IForm, Document {}
 
 const formSchema = new Schema<IForm>({
   userId: {
@@ -33,6 +35,6 @@ const formSchema = new Schema<IForm>({
   ]
 })
 
-const FormModel = model<IForm>('Form', formSchema);
+const FormModel = model<IFormDocument>('Form', formSchema);
 
 export default FormModel;

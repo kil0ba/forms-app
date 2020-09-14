@@ -1,25 +1,22 @@
 import { RequestHandler } from "express";
 import { Types } from "mongoose";
 
-import { ICreateForm } from "../../types/requests/forms/save";
-import { errorCatch, errorCreator } from "../../functions/errors";
-import { RequestWithToken } from "../../types/shared/RequestWithToken";
+import { errorCatch, errorCreator } from "../../../functions/errors";
+import { RequestWithToken } from "../../../types/shared/RequestWithToken";
 
 
-import User from "../../models/mongoose/user";
-import FormModel from '../../models/mongoose/formModel';
-import Input, { IInput } from '../../models/mongoose/input';
-import { ParamsDictionary } from "../../types/shared/ParamsDictionaty";
+import User from "../../../models/mongoose/user";
+import FormModel, { IForm } from '../../../models/mongoose/formModel';
+import Input, { IInputDocument } from '../../../models/mongoose/input';
 import { InputsValidator } from "./updateFormValidators";
-import InputModel from "../../models/mongoose/input";
+import InputModel from "../../../models/mongoose/input";
+import { IIdParam } from "../../../types/shared/Params";
 
-export const createForm: RequestHandler = async (req: RequestWithToken<ICreateForm>, res, next) => {
+export const createForm: RequestHandler = async (req: RequestWithToken<IForm>, res, next) => {
   const formInfo = req.body.formInfo;
   const userId = req.userId;
   const inputs = req.body.inputs;
   const formId = Types.ObjectId();
-
-
 
   const form = new FormModel({
     formInfo,
@@ -37,12 +34,12 @@ export const createForm: RequestHandler = async (req: RequestWithToken<ICreateFo
 
     const inputsValidation = new InputsValidator(inputs);
 
-    await inputsValidation.validateInputs();
+    await inputsValidation.validate(inputsValidation);
 
     const inputsResult = await Input.create(inputs.map(input => {
       input.formId = formId;
       return input;
-    })) as IInput[];
+    })) as unknown as IInputDocument[];
 
     inputsResult.map(inpRes => {
       form.inputs.push(inpRes)
@@ -61,11 +58,7 @@ export const createForm: RequestHandler = async (req: RequestWithToken<ICreateFo
   }
 }
 
-interface IDeleteFormParams extends ParamsDictionary {
-  id: string;
-}
-
-export const deleteForm: RequestHandler = async (req: RequestWithToken<void, IDeleteFormParams>, res, next) => {
+export const deleteForm: RequestHandler = async (req: RequestWithToken<void, IIdParam>, res, next) => {
   const userId = req.userId;
   const formId = req.params.id;
 

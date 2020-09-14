@@ -3,12 +3,14 @@ import { IForm } from "./formModel";
 const Schema = mongoose.Schema;
 
 
-export interface IUser extends Document {
+export interface IUser {
   email: string,
   password: string,
   name: string,
   forms: IForm[]
 }
+
+export interface IUserDocument extends IUser, Document {}
 
 const userSchema = new Schema<IUser>({
   email: {
@@ -32,4 +34,6 @@ const userSchema = new Schema<IUser>({
   ]
 });
 
-export default mongoose.model<IUser>('User', userSchema);
+const UserModel = mongoose.model<IUserDocument>('User', userSchema);
+
+export default UserModel;

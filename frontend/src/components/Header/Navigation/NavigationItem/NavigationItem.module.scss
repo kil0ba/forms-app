@@ -51,10 +51,12 @@
 }
 
 .NavigationItem a:active,
+.NavigationItem a:hover,
 .NavigationItem a.active {
-  color: #2ea3f2;
+  color: var(--light-blue);
+  transform: none;
 }
 
 .NavigationItem a:hover {
-  color: #949494;
+  color: var(--light-blue);
 }

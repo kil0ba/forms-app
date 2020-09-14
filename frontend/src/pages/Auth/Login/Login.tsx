@@ -31,7 +31,7 @@ const Login = (props: LoginProps) => {
               <Input name='email' label='Email' inputType='text' disabled={ props.loading }/>
               <Input name='password' label='Password' inputType='password' disabled={ props.loading }/>
               { props.error && <p> { props.error } </p> }
-              <button type='submit'>Login</button>
+              <button type='submit' className={ s.btn }>Login</button>
             </form>
           );
         } }/>

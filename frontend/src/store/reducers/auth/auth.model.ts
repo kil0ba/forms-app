@@ -1,7 +1,7 @@
 export class AuthState {
-  token?: string;
-  userId?: string;
-  error?: string;
+  token?: string = undefined;
+  userId?: string = undefined;
+  error?: string = undefined;
   loading = false;
 }
 

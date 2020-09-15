@@ -8,7 +8,7 @@ const authReducer = (state: AuthState = new AuthState(), action: AuthAction) => 
   newState.error = undefined;
   newState.loading = false;
 
-  switch (action.type) {
+  switch (action?.type) {
     case actionTypes.AUTH_START:
       newState.loading = true;
       break;

@@ -27,5 +27,8 @@ module.exports = {
       "tryExtensions": [".ts", ".js", ".json", ".node"]
     }],
     "@typescript-eslint/no-unused-vars": ["error"]
-  }
+  },
+  ignorePatterns: [
+    '*.test.js'
+  ]
 };
